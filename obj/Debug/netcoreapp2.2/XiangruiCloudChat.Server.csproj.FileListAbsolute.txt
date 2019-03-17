@@ -1,0 +1,14 @@
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\bin\Debug\netcoreapp2.2\XiangruiCloudChat.Server.deps.json
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\bin\Debug\netcoreapp2.2\XiangruiCloudChat.Server.runtimeconfig.json
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\bin\Debug\netcoreapp2.2\XiangruiCloudChat.Server.runtimeconfig.dev.json
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\bin\Debug\netcoreapp2.2\XiangruiCloudChat.Server.dll
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.csprojAssemblyReference.cache
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.csproj.CoreCompileInputs.cache
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.RazorAssemblyInfo.cache
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.RazorAssemblyInfo.cs
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.AssemblyInfoInputs.cache
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.AssemblyInfo.cs
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.RazorTargetAssemblyInfo.cache
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\bin\Debug\netcoreapp2.2\XiangruiCloudChat.Server.pdb
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.dll
+C:\Workspace\XiangruiCloudChat.Server\XiangruiCloudChat.Server\obj\Debug\netcoreapp2.2\XiangruiCloudChat.Server.pdb
