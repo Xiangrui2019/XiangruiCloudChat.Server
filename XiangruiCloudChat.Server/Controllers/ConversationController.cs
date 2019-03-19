@@ -139,7 +139,7 @@ namespace XiangruiCloudChat.Server.Controllers
             var target = conversations.SingleOrDefault(t => t.Id == id);
             if (target == null)
             {
-                return this.Protocol(ErrorType.NotFound, "Could not find target conversation in your friends.");
+                return this.Protocol(ErrorType.NotFound, "无法找到对应的会话.");
             }
             target.DisplayName = target.GetDisplayName(user.Id);
             target.DisplayImage = target.GetDisplayImage(user.Id);
@@ -149,7 +149,7 @@ namespace XiangruiCloudChat.Server.Controllers
                 return this.ChatJson(new AiurValue<PrivateConversation>(privateTarget)
                 {
                     Code = ErrorType.Success,
-                    Message = "Successfully get target conversation."
+                    Message = "成功获取了对应的会话信息"
                 });
             }
             else if (target is GroupConversation groupTarget)
@@ -164,7 +164,7 @@ namespace XiangruiCloudChat.Server.Controllers
                 return this.ChatJson(new AiurValue<GroupConversation>(groupTarget)
                 {
                     Code = ErrorType.Success,
-                    Message = "Successfully get target conversation."
+                    Message = "成功获取了对应的会话信息."
                 });
             }
             else

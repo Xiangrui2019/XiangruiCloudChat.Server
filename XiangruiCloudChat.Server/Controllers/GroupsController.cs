@@ -56,7 +56,7 @@ namespace XiangruiCloudChat.Server.Controllers
             var exists = _dbContext.GroupConversations.Any(t => t.GroupName == model.GroupName);
             if (exists)
             {
-                return this.Protocol(ErrorType.NotEnoughResources, $"A group with name: {model.GroupName} was already exists!");
+                return this.Protocol(ErrorType.NotEnoughResources, $"这个群名: {model.GroupName} 已经被占用了!");
             }
             var limitedDate = DateTime.UtcNow - new TimeSpan(1, 0, 0, 0);
             var todayCreated = await _dbContext
@@ -64,9 +64,9 @@ namespace XiangruiCloudChat.Server.Controllers
                 .Where(t => t.OwnerId == user.Id)
                 .Where(t => t.ConversationCreateTime > limitedDate)
                 .CountAsync();
-            if (todayCreated > 4)
+            if (todayCreated > 100)
             {
-                return this.Protocol(ErrorType.NotEnoughResources, "You have created too many groups today. Try it tomorrow!");
+                return this.Protocol(ErrorType.NotEnoughResources, "您今天创建的群聊太多了!");
             }
             var createdGroup = await _dbContext.CreateGroup(model.GroupName, user.Id, model.JoinPassword);
             var newRelationship = new UserGroupRelation
