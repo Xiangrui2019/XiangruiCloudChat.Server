@@ -32,13 +32,13 @@ namespace XiangruiCloudChat.Server
             Configuration = configuration;
             Mode = Convert.ToBoolean(configuration["LaxCookie"]) ? SameSiteMode.Lax : SameSiteMode.None;
         }
-
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureLargeFileUpload();
 
-            services.AddDbContext<ApplicationDbContext>(options => 
-                options.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=ChatRootDatabase;Integrated Security=True;Pooling=False"));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
