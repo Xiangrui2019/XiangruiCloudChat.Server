@@ -24,11 +24,13 @@ namespace XiangruiCloudChat.Server
 {
     public class Startup
     {
+        private IHostingEnvironment Environment { get; }
         private IConfiguration Configuration { get; }
         private SameSiteMode Mode { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
+            Environment = environment;
             Configuration = configuration;
             Mode = Convert.ToBoolean(configuration["LaxCookie"]) ? SameSiteMode.Lax : SameSiteMode.None;
         }
@@ -38,7 +40,16 @@ namespace XiangruiCloudChat.Server
             services.ConfigureLargeFileUpload();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                {
+                    if (Environment.IsDevelopment())
+                    {
+                        options.UseSqlServer(Configuration.GetConnectionString("DevlopementConnection"));
+                    }
+                    else
+                    {
+                        options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection"));
+                    }
+                });
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
