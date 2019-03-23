@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -9,9 +10,17 @@ namespace XiangruiCloudChat.Server.Middlewares
         private string ApplicationUrl { get; }
         private readonly RequestDelegate _next;
 
-        public HandleCorsOptionsMiddleware(RequestDelegate next, IConfiguration configuration)
+        public HandleCorsOptionsMiddleware(RequestDelegate next, IConfiguration configuration, IHostingEnvironment environment)
         {
-            ApplicationUrl = configuration["ApplicationUrl"];
+            if (environment.IsDevelopment())
+            {
+                ApplicationUrl = configuration["ApplicationUrls:DevlopementApplicationUrl"];
+            }
+            else
+            {
+                ApplicationUrl = configuration["ApplicationUrls:ProductionApplicationUrl"];
+            }
+            
             _next = next;
         }
 

@@ -119,13 +119,35 @@ namespace XiangruiCloudChat.Server.Controllers
         [AiurForceAuth(preferController: "", preferAction: "", justTry: false, register: false)]
         public IActionResult OAuth()
         {
-            return Redirect(_configuration["ApplicationUrl"]);
+            var ApplicationUrl = "";
+
+            if (_env.IsDevelopment())
+            {
+                ApplicationUrl = _configuration["ApplicationUrls:DevlopementApplicationUrl"];
+            }
+            else
+            {
+                ApplicationUrl = _configuration["ApplicationUrls:ProductionApplicationUrl"];
+            }
+
+            return Redirect(ApplicationUrl);
         }
 
         public async Task<IActionResult> AuthResult(AuthResultAddressModel model)
         {
             var user = await _authService.AuthApp(model);
-            return Redirect(_configuration["ApplicationUrl"]);
+            var ApplicationUrl = "";
+
+            if (_env.IsDevelopment())
+            {
+                ApplicationUrl = _configuration["ApplicationUrls:DevlopementApplicationUrl"];
+            }
+            else
+            {
+                ApplicationUrl = _configuration["ApplicationUrls:ProductionApplicationUrl"];
+            }
+
+            return Redirect(ApplicationUrl);
         }
 
         public async Task<IActionResult> SignInStatus()
