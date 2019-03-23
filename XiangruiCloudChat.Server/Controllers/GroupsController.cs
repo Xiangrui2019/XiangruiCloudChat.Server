@@ -137,7 +137,7 @@ namespace XiangruiCloudChat.Server.Controllers
                 _dbContext.GroupConversations.Remove(group);
                 await _dbContext.SaveChangesAsync();
             }
-            return this.Protocol(ErrorType.Success, $"您成功的加入了这个群聊: {groupName}!");
+            return this.Protocol(ErrorType.Success, $"您成功的退出了这个群聊: {groupName}!");
         }
 
         [HttpPost]
