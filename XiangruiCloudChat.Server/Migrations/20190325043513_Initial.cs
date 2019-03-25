@@ -48,11 +48,25 @@ namespace XiangruiCloudChat.Server.Migrations
                     CurrentChannel = table.Column<int>(nullable: false),
                     ConnectKey = table.Column<string>(nullable: true),
                     MakeEmailPublic = table.Column<bool>(nullable: false),
+                    IsOnline = table.Column<bool>(nullable: false),
                     Email = table.Column<string>(maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OnlineDevices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OnlineDevices", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -503,6 +517,9 @@ namespace XiangruiCloudChat.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "OnlineDevices");
 
             migrationBuilder.DropTable(
                 name: "Reports");

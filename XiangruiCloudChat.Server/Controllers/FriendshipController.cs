@@ -235,6 +235,16 @@ namespace XiangruiCloudChat.Server.Controllers
             return this.ChatJson(model);
         }
 
+        public async Task<IActionResult> FriendIsOnline([Required] string id)
+        {
+            var user = await _dbContext.Users.SingleOrDefaultAsync(t => t.Id == id);
+            return this.ChatJson(new AiurProtocol
+            {
+                Code = ErrorType.Success,
+                Message = user.IsOnline.ToString()
+            });
+        }
+
         [HttpPost]
         public async Task<IActionResult> ReportHim(ReportHimAddressModel model)
         {

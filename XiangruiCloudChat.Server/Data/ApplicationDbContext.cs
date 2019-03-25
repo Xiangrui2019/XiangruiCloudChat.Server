@@ -27,6 +27,7 @@ namespace XiangruiCloudChat.Server.Data
         public DbSet<FileRecord> FileRecords { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<Device> Devices { get; set; }
+        public DbSet<OnlineDevice> OnlineDevices { get; set; }
 
         public async Task<List<string>> MyPersonalFriendsId(string userId)
         {

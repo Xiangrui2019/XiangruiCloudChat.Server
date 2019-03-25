@@ -147,12 +147,14 @@ namespace XiangruiCloudChat.Server.Migrations
 
                     b.Property<int>("CurrentChannel");
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<int>("HeadImgFileKey");
+
+                    b.Property<bool>("IsOnline");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -291,6 +293,19 @@ namespace XiangruiCloudChat.Server.Migrations
                     b.HasIndex("SenderId");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("XiangruiCloudChat.Server.Models.OnlineDevice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OnlineDevices");
                 });
 
             modelBuilder.Entity("XiangruiCloudChat.Server.Models.Report", b =>

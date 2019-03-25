@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Aiursoft.Pylon;
 using Aiursoft.Pylon.Attributes;
@@ -102,6 +103,16 @@ namespace XiangruiCloudChat.Server.Controllers
                 _dbContext.AddFriend(user.Id, user.Id);
                 await _dbContext.SaveChangesAsync();
             }
+
+            await _dbContext.OnlineDevices.AddAsync(new OnlineDevice
+            {
+                UserId = user.Id
+            });
+            await _dbContext.SaveChangesAsync();
+
+            user.IsOnline = true;
+            await _dbContext.SaveChangesAsync();
+
             return this.ChatJson(new AiurProtocol()
             {
                 Code = ErrorType.Success,
@@ -146,6 +157,15 @@ namespace XiangruiCloudChat.Server.Controllers
             {
                 ApplicationUrl = _configuration["ApplicationUrls:ProductionApplicationUrl"];
             }
+
+            await _dbContext.OnlineDevices.AddAsync(new OnlineDevice
+            {
+                UserId = user.Id
+            });
+            await _dbContext.SaveChangesAsync();
+
+            user.IsOnline = true;
+            await _dbContext.SaveChangesAsync();
 
             return Redirect(ApplicationUrl);
         }
@@ -227,6 +247,30 @@ namespace XiangruiCloudChat.Server.Controllers
         public async Task<IActionResult> LogOut(LogOutAddressModel model)
         {
             var user = await _userManager.GetUserAsync(User);
+            var onlines = await _dbContext
+                .OnlineDevices
+                .Where(t => t.UserId == user.Id)
+                .AsNoTracking()
+                .ToListAsync();
+            _dbContext.OnlineDevices.Remove(onlines[0]);
+            await _dbContext.SaveChangesAsync();
+            var onlinesresult = await _dbContext
+                .OnlineDevices
+                .Where(t => t.UserId == user.Id)
+                .AsNoTracking()
+                .ToListAsync();
+            Console.WriteLine(onlinesresult);
+            if (onlinesresult.Count == 0)
+            {
+                user.IsOnline = false;
+                await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                user.IsOnline = true;
+                await _dbContext.SaveChangesAsync();
+            }
+            
             var device = await _dbContext
                 .Devices
                 .Where(t => t.UserID == user.Id)

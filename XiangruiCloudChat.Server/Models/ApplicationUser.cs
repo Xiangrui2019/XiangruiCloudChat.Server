@@ -37,6 +37,8 @@ namespace XiangruiCloudChat.Server.Models
         public bool MakeEmailPublic { get; set; } = true;
         [NotMapped]
         public bool IsMe { get; set; }
+
+        public bool IsOnline { get; set; } = false;
         public override string Email { get; set; }
         public bool ShouldSerializeEmail() => MakeEmailPublic || IsMe;
     }
