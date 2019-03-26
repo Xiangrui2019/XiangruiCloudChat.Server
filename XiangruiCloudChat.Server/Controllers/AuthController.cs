@@ -252,14 +252,22 @@ namespace XiangruiCloudChat.Server.Controllers
                 .Where(t => t.UserId == user.Id)
                 .AsNoTracking()
                 .ToListAsync();
-            _dbContext.OnlineDevices.Remove(onlines[0]);
+            if (onlines.Count != 0)
+            {
+                _dbContext.OnlineDevices.Remove(onlines[0]);
+            }
+            else
+            {
+                return this.Protocol(ErrorType.RequireAttention, "无法找到您的在线设备, 无法登出!");
+            }
+
             await _dbContext.SaveChangesAsync();
             var onlinesresult = await _dbContext
                 .OnlineDevices
                 .Where(t => t.UserId == user.Id)
                 .AsNoTracking()
                 .ToListAsync();
-            Console.WriteLine(onlinesresult);
+
             if (onlinesresult.Count == 0)
             {
                 user.IsOnline = false;
