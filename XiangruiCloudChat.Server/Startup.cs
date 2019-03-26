@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 using WebPush;
 using XiangruiCloudChat.Server.Data;
 using XiangruiCloudChat.Server.Middlewares;
@@ -90,6 +91,7 @@ namespace XiangruiCloudChat.Server
 
             app.UseMvc(routes =>
                 routes.MapRoute("Default", "/{controller=Home}/{action=Index}/{id?}"));
+            app.UseDocGenerator();
         }
     }
 }
