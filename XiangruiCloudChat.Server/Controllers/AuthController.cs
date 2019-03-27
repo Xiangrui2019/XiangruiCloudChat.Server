@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Aiursoft.Pylon;
@@ -368,6 +369,24 @@ namespace XiangruiCloudChat.Server.Controllers
             {
                 Code = ErrorType.Success,
                 Message = "成功的获取了您的所有Device."
+            });
+        }
+
+        [AiurForceAuth(directlyReject:true)]
+        public async Task<IActionResult> MyReports()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var reports = await _dbContext
+                                .Reports
+                                .Where(t => t.TargetId == user.Id)
+                                .AsNoTracking()
+                                .ToListAsync();
+
+            return this.ChatJson(new AiurValue<List<Report>>(reports)
+            {
+                Code = ErrorType.Success,
+                Message = "成功获取了您的所有举报!"
             });
         }
     }

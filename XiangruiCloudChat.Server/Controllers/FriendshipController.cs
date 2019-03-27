@@ -256,7 +256,7 @@ namespace XiangruiCloudChat.Server.Controllers
             }
             if (cuser.Id == targetUser.Id)
             {
-                return this.Protocol(ErrorType.HasDoneAlready, "您不可以举报您自己!");
+                return this.Protocol(ErrorType.HasDoneAlready, "您不可以给您自己发送私信!");
             }
             var exists = await _dbContext
                 .Reports
@@ -269,7 +269,7 @@ namespace XiangruiCloudChat.Server.Controllers
                 Reason = model.Reason
             });
             await _dbContext.SaveChangesAsync();
-            return this.Protocol(ErrorType.Success, $"成功的举报了这个用户: {targetUser.Email}!");
+            return this.Protocol(ErrorType.Success, $"成功的给这个用户发送了私信: {targetUser.Email}!");
         }
     }
 }
