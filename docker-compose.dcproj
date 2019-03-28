@@ -9,9 +9,6 @@
     <DockerServiceName>xiangruicloudchat.server</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yaml</DependentUpon>
-    </None>
     <None Include="docker-compose.yaml" />
     <None Include=".dockerignore" />
   </ItemGroup>
