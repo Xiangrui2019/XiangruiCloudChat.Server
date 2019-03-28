@@ -381,12 +381,13 @@ namespace XiangruiCloudChat.Server.Controllers
                                 .Reports
                                 .Where(t => t.TargetId == user.Id)
                                 .AsNoTracking()
+                                .Reverse()
                                 .ToListAsync();
 
             return this.ChatJson(new AiurValue<List<Report>>(reports)
             {
                 Code = ErrorType.Success,
-                Message = "成功获取了您的所有举报!"
+                Message = "成功获取了您的所有留言!"
             });
         }
     }
