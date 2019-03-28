@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  xiangruicloudchat.server:
+    image: ${DOCKER_REGISTRY-}xiangruicloudchatserver
+    build:
+      context: .
+      dockerfile: XiangruiCloudChat.Server/Dockerfile
