@@ -57,6 +57,7 @@ namespace XiangruiCloudChat.Server
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
             services.ConfigureApplicationCookie(t => t.Cookie.SameSite = Mode);
 
             services.AddAiursoftAuth<ApplicationUser>();
