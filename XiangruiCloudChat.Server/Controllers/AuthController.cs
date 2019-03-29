@@ -381,7 +381,6 @@ namespace XiangruiCloudChat.Server.Controllers
                                 .Reports
                                 .Where(t => t.TargetId == user.Id)
                                 .AsNoTracking()
-                                .Reverse()
                                 .ToListAsync();
 
             var myreports = reports.ToArray();
