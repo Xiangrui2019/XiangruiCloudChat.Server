@@ -384,7 +384,9 @@ namespace XiangruiCloudChat.Server.Controllers
                                 .Reverse()
                                 .ToListAsync();
 
-            return this.ChatJson(new AiurValue<List<Report>>(reports)
+            var myreports = reports.ToArray();
+            Array.Reverse(myreports);
+            return this.ChatJson(new AiurValue<List<Report>>(myreports.ToList())
             {
                 Code = ErrorType.Success,
                 Message = "成功获取了您的所有留言!"
