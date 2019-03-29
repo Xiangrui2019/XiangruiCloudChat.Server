@@ -385,6 +385,7 @@ namespace XiangruiCloudChat.Server.Controllers
 
             var myreports = reports.ToArray();
             Array.Reverse(myreports);
+
             return this.ChatJson(new AiurValue<List<Report>>(myreports.ToList())
             {
                 Code = ErrorType.Success,
