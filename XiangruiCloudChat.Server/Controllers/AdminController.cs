@@ -2,11 +2,10 @@
 using System.Net.Mime;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Aiursoft.Pylon.Attributes;
-using Aiursoft.Pylon.Models;
-using Aiursoft.Pylon.Services.ToAPIServer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using XiangruiCloudChat.Server.Core.Attributes;
+using XiangruiCloudChat.Server.Core.Models;
 using XiangruiCloudChat.Server.Data;
 using XiangruiCloudChat.Server.Services;
 
@@ -14,7 +13,7 @@ namespace XiangruiCloudChat.Server.Controllers
 {
     [APIExpHandler]
     [APIModelStateChecker]
-    [AiurForceAuth(directlyReject: true)]
+    [ForceAuthorize(directlyReject: true)]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _dbContext;

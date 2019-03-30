@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Aiursoft.Pylon;
-using Aiursoft.Pylon.Attributes;
-using Aiursoft.Pylon.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using XiangruiCloudChat.Server.Core;
+using XiangruiCloudChat.Server.Core.Attributes;
+using XiangruiCloudChat.Server.Core.Models;
 using XiangruiCloudChat.Server.Data;
 using XiangruiCloudChat.Server.Models;
 using XiangruiCloudChat.Server.Models.ApiAddressModels;
@@ -18,7 +18,7 @@ namespace XiangruiCloudChat.Server.Controllers
 {
     [APIExpHandler]
     [APIModelStateChecker]
-    [AiurForceAuth(directlyReject: true)]
+    [ForceAuthorize(directlyReject: true)]
     public class ConversationController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

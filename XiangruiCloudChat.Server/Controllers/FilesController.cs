@@ -2,15 +2,15 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Aiursoft.Pylon;
-using Aiursoft.Pylon.Attributes;
-using Aiursoft.Pylon.Models;
-using Aiursoft.Pylon.Services;
-using Aiursoft.Pylon.Services.ToOSSServer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using XiangruiCloudChat.Server.Core;
+using XiangruiCloudChat.Server.Core.Attributes;
+using XiangruiCloudChat.Server.Core.Models;
+using XiangruiCloudChat.Server.Core.Services;
+using XiangruiCloudChat.Server.Core.Services.ToOSSServer;
 using XiangruiCloudChat.Server.Data;
 using XiangruiCloudChat.Server.Models;
 using XiangruiCloudChat.Server.Models.ApiAddressModels;
@@ -21,7 +21,7 @@ namespace XiangruiCloudChat.Server.Controllers
 {
     [APIExpHandler]
     [APIModelStateChecker]
-    [AiurForceAuth(directlyReject: true)]
+    [ForceAuthorize(directlyReject: true)]
     public class FilesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Aiursoft.Pylon.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
+using XiangruiCloudChat.Server.Core.Models;
 
 namespace XiangruiCloudChat.Server.Models
 {

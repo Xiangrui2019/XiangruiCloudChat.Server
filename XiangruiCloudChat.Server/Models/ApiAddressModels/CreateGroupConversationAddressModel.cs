@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Aiursoft.Pylon.Attributes;
+using XiangruiCloudChat.Server.Core.Attributes;
 
 namespace XiangruiCloudChat.Server.Models.ApiAddressModels
 {

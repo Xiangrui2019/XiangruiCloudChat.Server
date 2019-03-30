@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Aiursoft.Pylon.Models.Stargate.ChannelViewModels;
-using Aiursoft.Pylon.Services;
-using Aiursoft.Pylon.Services.ToStargateServer;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using XiangruiCloudChat.Server.Core.Models.Stargate.ChannelViewModels;
+using XiangruiCloudChat.Server.Core.Services;
+using XiangruiCloudChat.Server.Core.Services.ToStargateServer;
 using XiangruiCloudChat.Server.Data;
 using XiangruiCloudChat.Server.Events;
 using XiangruiCloudChat.Server.Models;

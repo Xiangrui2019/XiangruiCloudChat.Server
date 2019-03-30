@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aiursoft.Pylon;
-using Aiursoft.Pylon.Attributes;
-using Aiursoft.Pylon.Models;
-using Aiursoft.Pylon.Models.ForApps.AddressModels;
-using Aiursoft.Pylon.Models.Stargate.ListenAddressModels;
-using Aiursoft.Pylon.Services;
-using Aiursoft.Pylon.Services.ToAPIServer;
-using Aiursoft.Pylon.Services.ToStargateServer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using XiangruiCloudChat.Server.Core;
+using XiangruiCloudChat.Server.Core.Attributes;
+using XiangruiCloudChat.Server.Core.Models;
+using XiangruiCloudChat.Server.Core.Models.ForApps.AddressModels;
+using XiangruiCloudChat.Server.Core.Models.Stargate.ListenAddressModels;
+using XiangruiCloudChat.Server.Core.Services;
+using XiangruiCloudChat.Server.Core.Services.ToAPIServer;
+using XiangruiCloudChat.Server.Core.Services.ToStargateServer;
 using XiangruiCloudChat.Server.Data;
 using XiangruiCloudChat.Server.Models;
 using XiangruiCloudChat.Server.Models.ApiAddressModels;
@@ -128,7 +128,7 @@ namespace XiangruiCloudChat.Server.Controllers
             return this.ChatJson(result);
         }
 
-        [AiurForceAuth(preferController: "", preferAction: "", justTry: false, register: false)]
+        [ForceAuthorize(preferController: "", preferAction: "", justTry: false, register: false)]
         public IActionResult OAuth()
         {
             var ApplicationUrl = "";
@@ -182,7 +182,7 @@ namespace XiangruiCloudChat.Server.Controllers
             });
         }
 
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> Me()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -196,7 +196,7 @@ namespace XiangruiCloudChat.Server.Controllers
         }
 
         [HttpPost]
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> UpdateInfo(UpdateInfoAddressModel model)
         {
             var cuser = await _userManager.GetUserAsync(User);
@@ -210,7 +210,7 @@ namespace XiangruiCloudChat.Server.Controllers
         }
 
         [HttpPost]
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> ChangePassword(ChangePasswordAddresModel model)
         {
             var cuser = await _userManager.GetUserAsync(User);
@@ -218,7 +218,7 @@ namespace XiangruiCloudChat.Server.Controllers
             return this.Protocol(ErrorType.Success, "成功的修改了您的密码!");
         }
 
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> InitPusher()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -244,7 +244,7 @@ namespace XiangruiCloudChat.Server.Controllers
             return this.ChatJson(model);
         }
 
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> LogOut(LogOutAddressModel model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -295,7 +295,7 @@ namespace XiangruiCloudChat.Server.Controllers
         }
 
         [HttpPost]
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> AddDevice(AddDeviceAddressModel model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -330,7 +330,7 @@ namespace XiangruiCloudChat.Server.Controllers
         }
 
         [HttpPost]
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> UpdateDevice(UpdateDeviceAddressModel model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -356,7 +356,7 @@ namespace XiangruiCloudChat.Server.Controllers
             });
         }
 
-        [AiurForceAuth(directlyReject: true)]
+        [ForceAuthorize(directlyReject: true)]
         public async Task<IActionResult> MyDevices()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -372,7 +372,7 @@ namespace XiangruiCloudChat.Server.Controllers
             });
         }
 
-        [AiurForceAuth(directlyReject:true)]
+        [ForceAuthorize(directlyReject:true)]
         public async Task<IActionResult> MyReports()
         {
             var user = await _userManager.GetUserAsync(User);

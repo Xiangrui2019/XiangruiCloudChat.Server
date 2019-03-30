@@ -1,8 +1,4 @@
 ﻿using System;
-using Aiursoft.Pylon;
-using Aiursoft.Pylon.Services.ToAPIServer;
-using Aiursoft.Pylon.Services.ToOSSServer;
-using Aiursoft.Pylon.Services.ToStargateServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebPush;
+using XiangruiCloudChat.Server.Core;
+using XiangruiCloudChat.Server.Core.Services.ToAPIServer;
+using XiangruiCloudChat.Server.Core.Services.ToOSSServer;
+using XiangruiCloudChat.Server.Core.Services.ToStargateServer;
 using XiangruiCloudChat.Server.Data;
 using XiangruiCloudChat.Server.Middlewares;
 using XiangruiCloudChat.Server.Models;
@@ -54,7 +54,7 @@ namespace XiangruiCloudChat.Server
 
             services.ConfigureApplicationCookie(t => t.Cookie.SameSite = Mode);
 
-            services.AddAiursoftAuth<ApplicationUser>();
+            services.AddOpenAuth<ApplicationUser>();
             services.AddScoped<UserService>();
             services.AddScoped<SecretService>();
             services.AddScoped<VersionChecker>();
@@ -79,15 +79,13 @@ namespace XiangruiCloudChat.Server
                 app.UseHsts();
             }
 
-            app.UseAiursoftAuthenticationFromConfiguration(Configuration, "Chat");
+            app.UseAuthenticationFromConfiguration(Configuration, "Chat");
             app.UseMiddleware<HandleCorsOptionsMiddleware>();
             app.UseAuthentication();
             app.UseLanguageSwitcher();
 
             app.UseMvc(routes =>
                 routes.MapRoute("Default", "/{controller=Home}/{action=Index}/{id?}"));
-            
-            app.UseDocGenerator();
         }
     }
 }

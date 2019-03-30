@@ -1,6 +1,6 @@
-﻿using Aiursoft.Pylon.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using XiangruiCloudChat.Server.Core.Models;
 using XiangruiCloudChat.Server.Services;
 
 namespace XiangruiCloudChat.Server.Controllers
